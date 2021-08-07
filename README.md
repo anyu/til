@@ -1,6 +1,9 @@
-# til
+# TIL
 
-A place to capture/share small scoped learnings in my day-to-day.
+Today I learned.
+A place to capture/share learnings from my day-to-day. These may be higher-level concepts or bite-sized how to's.
+
+Inspired by [jbranchaud/til](https://github.com/jbranchaud/til).
 
 Currently not a daily occurrence, as [daily-go](https://github.com/anyu/daily-go) is the habit I'm focused on.
 
