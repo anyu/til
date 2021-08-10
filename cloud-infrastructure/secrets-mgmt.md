@@ -14,7 +14,7 @@
 
 #### AWS Secrets Manager
 - A managed key/value storage service for secrets
-- Managed key/value store specifically (and only) for encrypted data 
+- Managed key/value store specifically (and only) for encrypted data
 - Leverages KMS to encrypt data
 - Handles key rotation
 

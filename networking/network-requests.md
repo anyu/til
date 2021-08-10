@@ -9,7 +9,7 @@
 
 ### Connect timeouts
 
-- How long client will wait for connection with a server to be established 
+- How long client will wait for connection with a server to be established
 - The time for a client who began the TCP handshake and sent a `SYN` packet, to receive a `SYN/ACK` back
 - Connect timeouts should be kept short
 
