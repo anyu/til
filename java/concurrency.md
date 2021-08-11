@@ -24,32 +24,11 @@ Multiple threads are used for parallel processing.
 
 ## Executors
 
-The [Executor](https://docs.oracle.com/javase/7/docs/api/java/util/concurrent/Executors.html) interface provides a higher level abstraction for working with threads.
-
-- Executors can run async tasks and manage a thread pool
-- Decouples the *submission* of a task for execution from how a task will be run (eg. thread use, scheduling, etc).
-
-The `ExecutorService` extends the Executor interface and can return a **Future object** or **terminate** the thread pool, which will cause it to reject new tasks.
-
-```java
-ExecutorService executor = Executors.newSingleThreadExecutor();
-executor.submit(() -> {
-    String threadName = Thread.currentThread().getName();
-    System.out.println("Hello " + threadName);
-});
-
-// Hello pool-1-thread-1
-```
-**Note**: Executors have to be explicitly stoppedor they'll keep listening for new tasks.
--  `shutdown()`: waits for actively running tasks to finish first
-- `shutdownNow()`: interrupts all running tasks
-
 ### Thread Pools
 
 A **thread pool** manages a pool of worker threads, and contains a work queue which holds tasks pending execution.
 
 **Fixed thread pool**
-- Introduced via the Executor framework (?)
 - Always has a specified # of threads running.
 - If a thread is somehow terminated while in use, it's automatically replaced with a new thread.
 - Tasks are submitted to the pool via an internal queue, which holds extra tasks whenever there are more active tasks than threads.
@@ -78,9 +57,6 @@ System.out.println("Is future done? " + future.isDone());
 System.out.print("result: " + result);
 ```
 
-### Futures
-- Calls to `future.get() ` blocks the current thread and waits until the underlying callable completes or terminates
-- Every non-terminated future will throw exceptions if you shut down the executor
 
 ## ScheduledExecutorService
 
