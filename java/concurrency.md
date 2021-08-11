@@ -1,4 +1,4 @@
-# Java Concurrency
+# Java Concurrency Concepts
 
 A Java application run in its own process.
 
@@ -15,38 +15,12 @@ Multiple threads are used for parallel processing.
   - A thread can re-read the shared data
 
 ## Threads
-Before starting a thread, the **task** to be executed by the thread must be specified.
-
-This can be done by implementing the `Runnable` functional interface.
-```java
-Runnable task = () -> {
-    String threadName = Thread.currentThread().getName();
-    System.out.println("Hello " + threadName);
-};
-task.run();
-
-Thread thread = new Thread(task);
-thread.start()
-
-System.out.println("Done!");
-```
-Due to concurrent execution, the order is non-determistic - the runnable could be invoked before or after `Done!'.
-```java
-Hello main
-Hello Thread-0 // could come after 'Done!'
-Done!
-  ```
-
-Threads can be put to sleep (handy for simulating long running tasks).
-
-### Disadvantages
-
-Threads can be directly used and may be sufficient for basic tasks, but have disadvantages:
-- Creating a new thread has some performance overhead
-- Too many threads can reduce performance (CPU needs to switch between threads)
-- It's difficult to control the # of threads, so it's easy to run out of memory due to too many threads
-
-Higher-level building blocks are often needed.
+- Threads can be put to sleep (handy for simulating long running tasks).
+- Threads can be directly used and may be sufficient for basic tasks, but have disadvantages:
+  - Creating a new thread has some performance overhead
+  - Too many threads can reduce performance (CPU needs to switch between threads)
+  - It's difficult to control the # of threads, so it's easy to run out of memory due to too many threads
+  - Higher-level building blocks are often needed.
 
 ## Executors
 
