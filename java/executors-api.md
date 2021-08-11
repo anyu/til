@@ -41,9 +41,8 @@ The [Executors](https://docs.oracle.com/javase/7/docs/api/java/util/concurrent/E
 
 - `newFixedThreadPool(int nThreads)`:  at most nThreads can execute concurrently at any time
 - `newCachedThreadPool()`: reuses previous threads if they're available, otherwise creates new threads
-- `newScheduledThreadPool()`:
-- `newSingleThreadExecutor()`: used when a background thread is needed to execute tasks one by one, but that no more than 1 task is running at any given time
-- `newSingleThreadScheduledExecutor()`: similar to `newSingleThreadExecutor`, but runs the tasks on a schedule
+- `newSingleThreadExecutor()`: used when a background thread is needed to execute tasks one by one, but that no more than 1 task is running at any given time (only uses 1 thread)
+   - essentially the same as `newFixedThreadPool(1)` above, except can't be reconfigured to use additional threads
 
 All ExecutorService instances returned by Executors are objects of the ThreadPoolExecutor class.
 
@@ -59,13 +58,30 @@ executor.submit(() -> {
 // Hello pool-1-thread-1
 ```
 
+## ScheduledExecutorService
+
+The [ScheduledExecutorService](https://docs.oracle.com/javase/7/docs/api/java/util/concurrent/ScheduledExecutorService.html) interface is used to run a task after a delay or periodically.
+
+- `newScheduledThreadPool(int corePoolSize)`: Creates a thread pool with that can schedule commands
+  - corePoolSize = the number of threads to keep in the pool, even if they are idle
+- `newSingleThreadScheduledExecutor()`: Similar to `newSingleThreadExecutor` (only uses 1 thread), but runs the tasks on a schedule
+  - essentially the same as `newScheduledThreadPool(1)` above, but just can't be reconfigured to use additional threads
+
+### Scheduling tasks
+
+- `scheduleAtFixedRate()`: Schedules tasks with a fixed time rate(eg. once every second), and accepts an initial delay
+    - Note: Does not take the task duration into account (so if period = 1s, but task duration = 2s, the thread will quickly max out)
+- `scheduleWithFixedDelay()`: Schedules tasks with a fixed delay between the end of one execution and the start of the next.
+    - useful if you can't predict the duration of scheduled tasks
+
+NOTE: If any *execution* instance of the task encounters an exception, subsequent executions are suppressed.
+
 ## Future
 
 The [Future](https://docs.oracle.com/javase/9/docs/api/java/util/concurrent/Future.html) interface represents the result of an async operation.
 
 - A result will eventually appear in the Future after processing is complete
 - When you submit a Callable for execution, the ExecutorService returns an instance of a Future object.
-
 - `get()` returns the value returned by the Callable task
 - Calls to `future.get() ` blocks the current thread and waits until the underlying callable completes or terminates
 - Every non-terminated future will throw exceptions if you shut down the executor
