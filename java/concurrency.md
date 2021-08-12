@@ -7,12 +7,20 @@ Multiple threads are used for parallel processing.
 ## Processes vs Threads
 
 **Process**: A process runs independently and is isolated from other processes.
+  - Processes are used to group resources together
+  - A process must have at least one thread (the main thread), but usually contains multiple
+  - Processes run in separate memory spaces
   - The OS allocates resources (memory, CPU time) to the process
+  - When the OS switches between multiple processes, this gives the illusion of parallelism
 
 **Thread**: A "lightweight process" that has its own call stack but can access shared data.
+  - Threads within the same process run in a shared memory space
   - Every thread has its own memory cache
   - If a thread reads shared data, it stores it in its own cache
   - A thread can re-read the shared data
+
+Multi-threading = when multiple threads are running in a single process (gives the illusion of parallelism)
+  - On a single CPU system, the threads take turns running.
 
 ## Threads
 
