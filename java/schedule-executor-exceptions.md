@@ -42,8 +42,10 @@ class Main {
 	}
 }
 ```
-TODO: But there are problems with this.
 
+TODO: Mention how futures translates unchecked exceptions up.
+
+HOWEVER, waiting for the Futures result blocks the main thread.
 
 Repl: https://replit.com/@anyu/ScheduledExecutorExceptions
 
