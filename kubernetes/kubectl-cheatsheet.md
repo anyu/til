@@ -5,7 +5,7 @@
 ```shell
 $ kubectl config get-contexts
 
-$ kubectl config use-context <CONTEXT>
+$ kubectl config use-context CONTEXT
 ```
 
 ### Namespaces
@@ -17,13 +17,13 @@ $ kubectl get ns
 ### Pods
 
 ```shell
-$ kubectl get pods -n <NAMESPACE>
+$ kubectl get pods -n NAMESPACE
 
 $ kubectl get pods --all-namespaces
 
-$ kubectl get pods -l app=<LABEL>
+$ kubectl get pods -l app=LABEL
 
-$ kubectl describe pod <POD NAME> -n <NAMESPACE>
+$ kubectl describe pod POD NAME -n NAMESPACE
 ```
 
 ### Deployments
@@ -92,6 +92,11 @@ FIELDS:
 ```
 
 ### Misc Debugging
+
+SSH into pod
+```shell
+kubectl exec -it POD_NAME -n NAMESPACE -c CONTAINER_NAME -- /bin/bash
+```
 
 ```shell
 $ kubectl cluster-info dump
