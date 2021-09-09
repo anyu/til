@@ -16,6 +16,23 @@ Transforms plaintext into a fixed-length output (aka. hash/digest*) with the fol
 - Useful for finding specific data in large database
 - Used in digital certificates
 
+## Cryptographic vs non-cryptographic hash functions
+
+Cryptographic hashes guarantees certain security properties:
+- preimage resistance (given a hash `h`, it must be difficult to find a message that yields `h` when hashed)
+- strong collision resistence (difficult to find two messages with the same hash)
+- eg. SHA-2, HMAC, BLAKE, Whirlpool
+
+Non-cryptographic hashes have weaker collision guarantees but are generally much faster.
+- eg. MurmurHash, FNV-1, xxHash
+
+NOTE: Different language implementations of these algorithms, particularly the less common ones, may result in varying hashes between them.
+
+**MurmurHash3 Resources**
+- JS tool: https://cimi.io/murmurhash3js-revisited
+- Reason why Scala's implementation may [differ from others](https://stackoverflow.com/questions/39176052/scala-murmurhash3-library-not-matching-python-mmh3-library/46472986#46472986)
+
+
 ## Password storage concepts
 
 ### Salting
