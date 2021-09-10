@@ -15,7 +15,7 @@ Keeps the bits that have `1`'s in the mask.
 ------------------------------
      0 0 1 0 1 1 0 0  [output]
 ```
-#### Bit masking with OR
+### Bit masking with OR
 Sets `1` if either input or mask bit is `1`.
 
 ```
@@ -25,7 +25,7 @@ Sets `1` if either input or mask bit is `1`.
      1 1 1 1 1 1 0 1  [output]
 ```
 
-#### Bit masking with XOR
+### Bit masking with XOR
 Flips the bits
 
 ```
