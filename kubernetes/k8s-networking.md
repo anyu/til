@@ -44,6 +44,7 @@ Pods are ephemeral; their IPs change when recreated.
 
 **Services** are an abstraction for a group of pods
 - Services assign a ClusterIP (a virtual IP) to a group of pod IPs
+- ClusterIP services are the default Services
 - ClusterIP is only reachable inside a cluster
 
 ### In-cluster load balancing mechanisms
@@ -58,8 +59,8 @@ Pods are ephemeral; their IPs change when recreated.
 ### DNS
 - DNS can be used to avoid hardcoding a Service's cluster IP to an app
 - k8s DNS = a k8s Service on the cluster that configures the kubelet agents on each node to use the DNS to resolve DNS names
-- every Service is assigned a DNS name
-- a DNS pods consists of 3 containers:
+- Every Service is assigned a DNS name
+- A DNS pods consists of 3 containers:
   - `kubedns`: watches control plane for changes to Services, Endpoints. Maintains in-memory lookup for DNS requests,
   - `dnsmasq`: provides DNS caching
   - `sidecar`: provides healthcheck endpoint for kubedns, dnsmasq
@@ -67,12 +68,39 @@ Pods are ephemeral; their IPs change when recreated.
 ## External-to-Service
 - Intra-cluster communication needs something like a service mesh, where Istio comes in
 
-### Egress Gateways
-- performs NAT for instances with public IP addresses
+### Egress - traffic exiting cluster
+- Performs NAT for instances with public IP addresses
 - NAT changes a node's internal IP address to a public one
 
-### Ingress
+### Ingress - traffic reaching cluster
 
-### NodePort
-- `nodePort`: port for a Service on the host, which allows access to the service from the node network
+#### Layer 7 ingress: NodePort
+- Service type: nodePort
+- Opens a specific port on all the nodes; any traffic sent to this port is forwarded to the Service
 - `targetPort`: port that the application is listening on
+- Cons:
+  - can only have one service per port
+  - ports must be in 30,000-32,767 range
+  - not recommended for prod
+
+#### Layer 4 ingress: LoadBalancer
+- Default/standard for many managed k8s installations
+- Cloud provider creates a load balancer for a newly deployed service
+- All traffic on specified port is forwarded to service
+- iptables on each node direct incoming traffic from load balancer to correct pod
+- Only understand node IPs (not pod IPs)
+- Supports multiple ports per Service
+- Cons:
+  - each service exposed with a LB gets its own IP (can be costly)
+
+### Layer 7 ingress: Ingress Controllers
+- Not a type of Service; always implemented by a 3rd party proxy
+- Sits in front of services and acts as a smart router to the cluster (get SSL, auth, routing features)
+- eg. Google Cloud Load Balancer, Nginx, Istio, Contour
+  - GKE's ingress controller spins up an L7 HTTP(S) load balancer
+- Powerful. Useful for exposing multiple services under the same IP
+
+---
+
+#### Resources
+- [A Guide to the Kubernetes Networking Model - 2018](https://sookocheff.com/post/kubernetes/understanding-kubernetes-networking-model/#container-to-container)
