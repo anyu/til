@@ -30,6 +30,8 @@ $ kubectl describe pod POD NAME -n NAMESPACE
 
 ```shell
 kubectl get deployments
+
+kubectl apply -f deployment.yaml
 ```
 
 ### Services
