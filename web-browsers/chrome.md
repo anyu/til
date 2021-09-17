@@ -97,3 +97,4 @@ When the renderer process receives the commit for a navigation and starts receiv
 
 ### Resources
 - https://developers.google.com/web/updates/2018/09/inside-browser-part1
+- [The Google Chrome Comic](https://www.google.com/googlebooks/chrome/big_00.html)

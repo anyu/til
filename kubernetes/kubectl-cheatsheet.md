@@ -26,6 +26,12 @@ $ kubectl get pods -l app=LABEL
 $ kubectl describe pod POD NAME -n NAMESPACE
 ```
 
+### Events
+
+```shell
+kubectl get events
+```
+
 ### Deployments
 
 ```shell
@@ -42,8 +48,30 @@ kubectl get svc
 
 ### Secrets
 ```shell
-$ kubectl get secrets
+kubectl get secrets
 ```
+
+### Proxy to hit kube-api directly
+
+Creates a proxy server (an application-level gateway) between localhost and k8s api server
+- incoming traffic enters one port and gets forwarded to the remote k8s api port
+
+```shell
+kubectl proxy --port=3000
+```
+
+### Apply a k8s config
+
+```shell
+cat <<EOF | kubectl apply -f -
+kind: Namespace
+apiVersion: v1
+metadata:
+name: my-cool-ns
+EOF
+```
+
+---
 
 ### Quick resource docs
 
