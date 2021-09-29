@@ -23,7 +23,10 @@ $ kubectl get pods --all-namespaces
 
 $ kubectl get pods -l app=LABEL
 
-$ kubectl describe pod POD NAME -n NAMESPACE
+$ kubectl describe pod POD_NAME -n NAMESPACE
+
+$ kubectl logs POD_NAME -n NAMESPACE -c CONTAINER
+
 ```
 
 ### Events
