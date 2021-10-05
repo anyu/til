@@ -21,7 +21,7 @@ Time Zone: America/New_York
 `/etc/localtime` - a binary representation of the exact rules (daylight savings, leap days, etc) for calculating time relative to UNIX time (the kernal's representation).
 May contain a symlink to the system's timezone.
 - Applications read this when they first need timezone info
-- used by `date` command
+- `date` command defaults to looking at this file, unless otherwise overridden via `TZ` env var
 
 ```shell
 $ ls -l /etc/localtime
@@ -34,6 +34,14 @@ lrwxr-xr-x 42 root 19 Sep 19:21 /etc/localtime -> /var/db/timezone/zoneinfo/Amer
 
 
 ## Changing system timezones
+
+#### via date
+
+Only changes for current shell session
+
+```shell
+TZ=America/New_York date
+```
 
 #### via systemsetup
 
