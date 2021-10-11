@@ -26,3 +26,17 @@ When desired, skip hook
 ```
 git commit --no-verify
 ```
+
+### Config
+
+#### Run pre-commit against subdirectory example
+
+```yaml
+...
+- id: golangci-lint
+  name: Golang linting
+  language: system
+  entry: /bin/bash -c "cd GO_SUBDIR; pre-commit-golangci-lint.sh"
+  pass_filenames: false
+  types: [go]
+```

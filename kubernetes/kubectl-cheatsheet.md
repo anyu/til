@@ -54,6 +54,12 @@ kubectl get svc
 kubectl get secrets
 ```
 
+### Volumes
+
+```shell
+kubectl exec POD_NAME -n NAMESPACE -c CONTAINER_NAME -- /bin/cat /path/to/shared/volume/file
+```
+
 ### Proxy to hit kube-api directly
 
 Creates a proxy server (an application-level gateway) between localhost and k8s api server
