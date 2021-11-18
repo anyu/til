@@ -45,21 +45,7 @@ If the pre-built filters aren't sufficient, you can write your own.
   - a. Load Wasm module by pointing it to a local .wasm file accessible by the proxy
   - b. Use remote fetch and have Envoy download the .wasm file for you
 
-### Using Wasm in Envoy
-
-- Envoy embeds a subset of a V8 VM
-- Envoy uses a multi-threaded model: 1 main thread handles config updates + global tasks, worker threads proxy individual TCP connections/HTTP requests. Worker threads are independent from each other.
-
-#### Envoy Wasm filters with Proxy-Wasm
-
-- Proxy-Wasm is a "proxy-agnostic binary interface (ABI) standard" that specifies how proxies (host) and Wasm modules interact
-  - These interactions are in the form of functions and callbacks
-  - It's proxy-agnostic so can be used with other proxies, not just Envoy
-- Proxy-Wasm extension gets distributed as a Wasm module (.wasm file)
-- At runtime, Envoy loads every Wasm module (all .wasm files) into a unique Wasm VM
-- Envoy creates a separate replica of Wasm VM for every thread on which the extension will be executed
-
 ### Resources
 - [Why Ambassador Chose Envoy](https://blog.getambassador.io/envoy-vs-nginx-vs-haproxy-why-the-open-source-ambassador-api-gateway-chose-envoy-23826aed79ef)
 - [How to Write Envoy Filters](https://blog.envoyproxy.io/how-to-write-envoy-filters-like-a-ninja-part-1-d166e5abec09)
-- [Tetrate-Episode 07: Developing Envoy Wasm Extensions](https://youtu.be/JIq8wujlG9s?t=1137)
+- [Envoy: Life of a Request](https://www.envoyproxy.io/docs/envoy/latest/intro/life_of_a_request#overview)
