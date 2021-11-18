@@ -1,6 +1,6 @@
 # Rust 101
 
-
+## CLI Cheatsheet
 ```shell
 # Compile
 $ rustc main.rs
@@ -25,4 +25,36 @@ $ cargo build --release
 
 # Open docs for dependencies
 $ cargo doc --open
+```
+
+## Rust Package Layout
+
+[Conventional layout](https://doc.rust-lang.org/cargo/guide/project-layout.html):
+```shell
+├── Cargo.lock
+├── Cargo.toml
+├── src/
+│   ├── lib.rs  # default library file
+│   ├── main.rs # default executable file
+│   └── bin/ # place for other executables
+│       ├── named-executable.rs
+│       ├── another-executable.rs
+│       └── multi-file-executable/
+│           ├── main.rs
+│           └── some_module.rs
+├── benches/
+│   ├── large-input.rs
+│   └── multi-file-bench/
+│       ├── main.rs
+│       └── bench_module.rs
+├── examples/
+│   ├── simple.rs
+│   └── multi-file-example/
+│       ├── main.rs
+│       └── ex_module.rs
+└── tests/
+    ├── some-integration-tests.rs
+    └── multi-file-test/
+        ├── main.rs
+        └── test_module.rs
 ```
