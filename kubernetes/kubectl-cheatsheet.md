@@ -52,7 +52,23 @@ kubectl get svc
 ### Secrets
 ```shell
 kubectl get secrets
+
+kubectl describe secret SECRET_NAME -n NAMESPACE
+
+# Get value of secret
+kubectl get secrets/SECRET_NAME -n NAMESPACE -o json
+
+# Check cert
+openssl x509 -in <(kubectl -n NAMESPACE get secret \
+  SECRET_NAME -o jsonpath='{.data.tls\.crt}' | base64 -d) \
+  -text -noout
 ```
+
+```
+kubectl get Certificate --all-namespaces -oyaml
+```
+
+
 
 ### Volumes
 
