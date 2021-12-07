@@ -2,7 +2,7 @@
 
 ## What's Wasm and what's it used for?
 
-Wasm is a low-level assembly language (a compilation result of another language) with near-native performance that can run in modern browsers.
+[Wasm](https://webassembly.org/)  is a low-level assembly language (a compilation result of another language) with near-native performance that can run in modern browsers.
 
 It's an open standard for running binary programs in browsers; enabling building an entire web app in a non-JS language.
 
