@@ -54,3 +54,8 @@ The module communicates with the host via an API.
 
 #### AssemblyScript
 - compiles a strict variant of TypeScript to Wasm
+
+### Resources
+
+- https://rsms.me/wasm-intro
+- https://madewithwebassembly.com
