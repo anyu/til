@@ -1,6 +1,5 @@
 # Bitwise operations
 
-
 ## Bit masking
 
 A mask defines the bits you want to keep.
