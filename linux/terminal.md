@@ -1,5 +1,14 @@
 # Terminal
 
+## Check what process is running on a port
+
+```
+$ lsof -i :8000
+
+COMMAND     PID USER   FD   TYPE             DEVICE SIZE/OFF NODE NAME
+com.docke 10055 anyu   49u  IPv6 0xff714f4171cf93e1      0t0  TCP *:irdmi (LISTEN)
+```
+
 ## Redirecting output
 
 ```
