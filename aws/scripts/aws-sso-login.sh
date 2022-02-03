@@ -31,8 +31,11 @@ main() {
   local cli_cache_dir cli_cache_file cache_file_contents
   cli_cache_dir="${HOME}/.aws/cli/cache"
 
-  # Clears existing CLI cache (note, not sso cache) files
-  find "${cli_cache_dir}" -type f -name "*.json" -delete
+  # Clears CLI cache (note, not sso cache) files if exists
+  if [ -d "${cli_cache_dir}" ]; then
+    echo "Clearing CLI cache..."
+    find "${cli_cache_dir}" -type f -name "*.json" -delete
+  fi
 
   # Loads SSO token from SSO cache, retrieves creds and caches at ~/.aws/cli/cache
   echo "Retrieving & caching creds for: ${profile}..."

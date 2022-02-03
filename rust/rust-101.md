@@ -27,6 +27,13 @@ $ cargo build --release
 $ cargo doc --open
 ```
 
+## GitHub Cargo dep failures
+
+```sh
+eval `ssh-agent -s`
+ssh-add
+```
+
 ## Rust Package Layout
 
 [Conventional layout](https://doc.rust-lang.org/cargo/guide/project-layout.html):

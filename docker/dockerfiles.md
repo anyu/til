@@ -31,3 +31,11 @@ volumes:
   - "/etc/timezone:/etc/timezone:ro"
   - "/etc/localtime:/etc/localtime:ro"
 ```
+
+### Preserving build logs
+
+```
+docker build . -t IMAGE --progress=plain
+
+docker-compose build IMAGE --progress=plain
+```
