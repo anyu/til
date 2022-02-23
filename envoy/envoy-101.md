@@ -49,3 +49,4 @@ If the pre-built filters aren't sufficient, you can write your own.
 - [Why Ambassador Chose Envoy](https://blog.getambassador.io/envoy-vs-nginx-vs-haproxy-why-the-open-source-ambassador-api-gateway-chose-envoy-23826aed79ef)
 - [How to Write Envoy Filters](https://blog.envoyproxy.io/how-to-write-envoy-filters-like-a-ninja-part-1-d166e5abec09)
 - [Envoy: Life of a Request](https://www.envoyproxy.io/docs/envoy/latest/intro/life_of_a_request#overview)
+- [Envoy buliding blocks (clusters)](https://www.tetrate.io/blog/get-started-with-envoy-in-5-minutes/)
