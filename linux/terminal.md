@@ -1,4 +1,11 @@
-# Terminal
+# Terminal`
+
+## Date - get current timestamp in UNIX
+
+```shell
+$ date +%s
+1649687726
+```
 
 ## Check what process is running on a port
 
