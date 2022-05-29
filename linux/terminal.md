@@ -1,4 +1,4 @@
-# Terminal`
+# Terminal
 
 ## Date - get current timestamp in UNIX
 
