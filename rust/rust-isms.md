@@ -17,7 +17,7 @@ fn main() {
 fn some_func_that_returns_tuple() -> (String, String) {
     (String::from("hey"),String::from("yo"))
 }
-``` 
+```
 ```sh
 error[E0658]: destructuring assignments are unstable
  --> src/main.rs:4:24
@@ -42,7 +42,7 @@ fn main() {
 fn some_func_that_returns_tuple() -> (String, String) {
     (String::from("hey"),String::from("yo"))
 }
-``` 
-  
+```
+
 - https://github.com/rust-lang/rfcs/pull/2909
 - https://stackoverflow.com/questions/34304341/can-i-destructure-a-tuple-without-binding-the-result-to-a-new-variable-in-a-let

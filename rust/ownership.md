@@ -61,7 +61,7 @@ Because this type must support mutable, text unkown at compile time, we meed to 
 1. Requesting memory from the memory allocator at runtime.
 1. Returning the memory back to the allocator when we’re done.
 
-2 is where Rust is different. 
+2 is where Rust is different.
 
 GC languages automatically cleans up this memory. In other non-GC languages, you need to figure out when the memory's no longer used and return it.
 

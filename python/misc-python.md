@@ -13,7 +13,7 @@
 - Use virtual environments to isolate dependencies between projects:
   ```sh
   # creates virtual env
-  python3 -m venv venv 
+  python3 -m venv venv
 
   # activate env
   source venv/bin/activate
@@ -37,7 +37,7 @@
 	```python
 	def create_meeting(sub, *args):
 		print(args)
-	
+
 	create_meeting("project planning", 2021, 10, 20)
 	create_meeting("project planning", 2021, 10, 20, 14, 0)
 
@@ -55,7 +55,7 @@
 		if "fill" in kwargs:
 			fill = kwargs["fill"]
 		if "stroke" in kwargs:
-			fill = kwargs["stroke"]   
+			fill = kwargs["stroke"]
 		print(f"Circle with radius {radius}, fill {fill}, stroke {stroke}")
 
 	draw_circle(10, stroke="green")

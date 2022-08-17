@@ -12,8 +12,8 @@
 ## `_foo`:  Single leading underscore
 
 - for internal objects
-- a syntax hint that's not enforced by the interpreter, so technically still accessible externally. 
-  - EXCEPT by default, a variable with a single leading underscore won't be available in the namespace for wildcard imports. 
+- a syntax hint that's not enforced by the interpreter, so technically still accessible externally.
+  - EXCEPT by default, a variable with a single leading underscore won't be available in the namespace for wildcard imports.
     ```py
     from module import *
 
@@ -59,7 +59,7 @@
         self.color = "red"
         self._speed = 70
         self.__brand = "bmw"
-        
+
   car = Car()
   ```
 
@@ -78,7 +78,7 @@
           self.color = "green"
           self._speed = 80
           self.__brand = "audi"
-          
+
   extended_car = ExtendedCar()
   ```
 

@@ -36,7 +36,7 @@ These terms get muddled because they may overlap.
   - single point of failure
   - typically unavoidable for Internet-facing distributed systems
 - **Embedded client library**: Service + client library -> Backend
-  - LB is embedded directly into service via a library (eg. Finagle, Hystrix)  
+  - LB is embedded directly into service via a library (eg. Finagle, Hystrix)
   - distributes LB functionality to each client
   - library upgrades can be painful
 - **Sidecar proxy**: Service <-> sidecar proxy -> Backend

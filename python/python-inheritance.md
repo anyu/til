@@ -6,7 +6,7 @@ class BaseClass:
     {Body}
 class DerivedClass(BaseClass):
     {Body}
-```	
+```
 
 Example:
 ```python
@@ -15,7 +15,7 @@ Example:
 # base class (aka. superclass)
 class Employee:
 	# __init__ func is called every time an object is created from the class
-	# the constructor for all intents & purposes (though some argue __new__ 
+	# the constructor for all intents & purposes (though some argue __new__
 	# plays part of that role)
 	# `self` = reference to the current instance of the class
 	def __init__(self, name, salary):
@@ -34,7 +34,7 @@ class Manager(Employee):
 
 	def get_report(self):
 		return f"{self.name} ${self.salary}, leads {self.leads_department} dep."
-		
+
 # main.py
 
 employees = [

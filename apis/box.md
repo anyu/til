@@ -18,7 +18,7 @@
     )
     client = Client(auth)
     # for verbose networking details
-    # client = LoggingClient(auth) 
+    # client = LoggingClient(auth)
 
     user = client.user().get()
     print(f'The current user ID is {user.id}')

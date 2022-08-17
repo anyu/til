@@ -6,9 +6,9 @@ A managed, serverless key-value NoSQL DB -- optimized for high performance at sc
 - easy to scale out horizontally
 - high availability: high uptime guarantee
 - durability: DynamoDB stores multiple copies of data across multiple nodes
-- ideal for applications with **known access patterns** 
+- ideal for applications with **known access patterns**
 - integrates well with other AWS Services
-- cost effective 
+- cost effective
 
 ## Cons
 - may find it harder to perform certain queries if access patterns change
@@ -23,11 +23,11 @@ A managed, serverless key-value NoSQL DB -- optimized for high performance at sc
 - **table** = collection of items
 - **item** = a collection of attributes (eg. like a row)
   - single data record in a table
-- **attributes** = data attached to an item (eg. like a column) 
+- **attributes** = data attached to an item (eg. like a column)
   - not required on items, except for attirubtes that make up the primary key
 - **primary key**
   - uniquely identifies an item in a table
-  - two types: 
+  - two types:
     - 1) simple primary key - just a partition key (aka. 'hash key')
       - hash key is used to evenly distribute the item across a key space
     - 2) composite primary key - a parition key + sort key (aka 'range key')
@@ -38,7 +38,7 @@ A managed, serverless key-value NoSQL DB -- optimized for high performance at sc
   - 1) local secondary indexes - uses the same partition key as the underlying table, but a different sort key
     - another way to resort the data, but not regroup the data
     - LSI updates are strongly consistent
-  - 2) global secondary indexes (GSI) 
+  - 2) global secondary indexes (GSI)
     - defines an entirely different primary key for a table (could alternate partition and/or sort key)
     - enables querying on other attributes. Can add GSIs anytime after table is created
     - GSI updates are eventually consistent
@@ -52,7 +52,7 @@ A managed, serverless key-value NoSQL DB -- optimized for high performance at sc
 ### Access Options
 
 - **scan operation**: reads over every record in table, use filter expression (eg. `country=USA` to get all users in X country)
-  - inefficient, costly as you get charged for reading each row 
+  - inefficient, costly as you get charged for reading each row
 - use global secondary indexes
 - have the option of strongly consistent read (read is from primary node) or eventually consistent  read (read is from any other node; half the cost b/c there's more nodes to choose from)
 
@@ -82,7 +82,7 @@ A managed, serverless key-value NoSQL DB -- optimized for high performance at sc
 | ----------- | ---------- |
 | S           | string     |
 | N           | number     |
-| B           | binary     | 
+| B           | binary     |
 | BOOL        | boolean    |
 | NULL        | null       |
 | L           | list       |
@@ -135,7 +135,7 @@ A managed, serverless key-value NoSQL DB -- optimized for high performance at sc
 ```sh
 aws dynamodb list-tables
 
-aws dynamodb describe-table --table-name UsersTable 
+aws dynamodb describe-table --table-name UsersTable
 ```
 
 ### Retrieve only particular attributes from an item
