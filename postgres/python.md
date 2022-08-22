@@ -68,9 +68,9 @@ with connect(**config) as conn:
 
         for r in rows:
           print(f"{r[0], r[1]}")
-        
+
         cur.close()
 
 # close connection
-conn.close()        
+conn.close()
 ```
