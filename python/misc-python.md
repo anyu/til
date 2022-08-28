@@ -62,3 +62,10 @@
 
 	# Circle with radius 10, fill red, stroke green
 	```
+
+#### Imports
+
+Relative imports
+```
+from .config import someFunc
+```

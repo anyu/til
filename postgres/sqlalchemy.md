@@ -14,6 +14,19 @@ pip install psycopg2
 pip install alembic
 ```
 
+NOTE:
+
+Unfortunately Postgres has to still be additionally installed:
+
+```
+brew install postgresql
+```
+
+SQLAlchemy has a dependency on `psycopg2`, which in turn, expects a `pg_config` file.
+
+- On macOS, installing `psycopg2-binary` would typically be the way to forgo the `pg_config` dep. there is a [known issue](https://github.com/psycopg/psycopg2/issues/1286) with this for Apple M1 chips. A workaround exists using a 3rd party user's [test binary](https://github.com/psycopg/psycopg2/issues/1286#issuecomment-1186353903), but that seems riskier than just going with the brew formula.
+- On Linux envs, this can be solved via installing deps such as `libpq`, `python3-dev` (exact package depends on linux distro)
+
 ## Organization
 
 ```
