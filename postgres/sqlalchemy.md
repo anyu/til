@@ -27,6 +27,17 @@ SQLAlchemy has a dependency on `psycopg2`, which in turn, expects a `pg_config` 
 - On macOS, installing `psycopg2-binary` would typically be the way to forgo the `pg_config` dep. there is a [known issue](https://github.com/psycopg/psycopg2/issues/1286) with this for Apple M1 chips. A workaround exists using a 3rd party user's [test binary](https://github.com/psycopg/psycopg2/issues/1286#issuecomment-1186353903), but that seems riskier than just going with the brew formula.
 - On Linux envs, this can be solved via installing deps such as `libpq`, `python3-dev` (exact package depends on linux distro)
 
+If hit this error on running SQLalchemy app:
+```
+Library not loaded: '/opt/homebrew/opt/postgresql/lib/libpq.5.dylib'
+```
+
+May need to find/symlink where the libpq file is:
+
+```
+sudo ln -s /opt/homebrew/opt/postgresql@14/lib/postgresql@14/libpq.5.dylib /usr/local/lib/libpq.5.dylib
+```
+
 ## Organization
 
 ```
