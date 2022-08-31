@@ -2,9 +2,34 @@
 
 #### Less frequently used Git commands I tend to forget
 
+Stash only staged changes (as of v2.35)
+```shell
+git stash --staged
+```
+
 Stash with label
 ```shell
 git stash push -m "some-msg"
+```
+
+Show file list of most recent stash
+```shell
+git stash show
+```
+
+Show changes of most recent stash
+```shell
+git stash show -p
+```
+
+Show changes of specific stash
+```shell
+git stash show -p $STASH_INDEX
+```
+
+Drop stash
+```shell
+git stash drop $STASH_INDEX
 ```
 
 Delete local branch

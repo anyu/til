@@ -80,3 +80,19 @@ CREATE TABLE TABLE_NAME (
 ```
 DROP TABLE TABLE_NAME
 ```
+
+## Troubleshooting
+
+### Common errors
+
+- Column doesn't exist when inserting into table
+  - make sure values aren't double quoted (Postgres interprets them as delimited identifiers, eg. column in a table), but single quoted
+
+
+## Resources
+
+- https://dbfiddle.uk/?rdbms=postgres_14
+  - generate UUID type value
+    ```sql
+    select gen_random_uuid ()
+    ```
