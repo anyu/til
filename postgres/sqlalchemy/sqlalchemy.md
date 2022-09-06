@@ -59,7 +59,7 @@ from sqlalchemy.orm import relationship
 Base = declarative_base()
 
 class Author(Base):
-    __tablename__ = 'author'
+    __tablename__ = 'authors'
     id = Column(UUID(as_uuid=True), server_default=text("gen_random_uuid()"), primary_key=True)
     created_at = Column(DateTime, server_default=utcnow(), nullable=False)
     updated_at = Column(
@@ -68,24 +68,24 @@ class Author(Base):
     author = Column(Text)
 
 class Book(Base):
-    __tablename__ = 'book'
+    __tablename__ = 'books'
     id = Column(UUID(as_uuid=True), server_default=text("gen_random_uuid()"), primary_key=True)
     title = Column(VARCHAR(255), nullable=False)
-    author_id = Column(UUID(as_uuid=True), ForeignKey("author.id"), nullable=False)
+    author_id = Column(UUID(as_uuid=True), ForeignKey("authors.id"), nullable=False)
     active = Column(Boolean, server_default=text("false"), nullable=False)
 
     book = relationship("Book")    
 
 # Intersection/join model - there's a simpler way if you don't need to add extra fields
 class BookAuthor(Base):
-    __tablename__ = "book_author"
+    __tablename__ = "books_authors"
 
     some_extra_field = Column(Text)
     book_id = Column(
-        UUID(as_uuid=True), ForeignKey("book.id"), primary_key=True, nullable=False
+        UUID(as_uuid=True), ForeignKey("books.id"), primary_key=True, nullable=False
     )
     author_id = Column(
-        UUID(as_uuid=True), ForeignKey("author.id"), primary_key=True, nullable=False
+        UUID(as_uuid=True), ForeignKey("authors.id"), primary_key=True, nullable=False
     )    
 
     book = relationship("Book")

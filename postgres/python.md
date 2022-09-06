@@ -6,20 +6,21 @@
   - most common/widely supported: [psycopg](https://github.com/psycopg/psycopg)
     - used by SQLAlchemy under the hood
     - uses `libpq` (supports the same connection env vars as libpq: `PGDATABASE`, `PGUSER`, `PGHOST`, etc)
-      - libpq requires `libpq-dev`, `python-dev` packages
-  - no native dependendices/easy to distribute: pg8000
-  - newer kid on the block: asyncpg
+      - libpq requires `libpq-dev`, `python-dev` packages in linux envs; other for macOS. See [sqlalchemy](./sqlalchemy/sqlalchemy.md).
+  - no native dependendices/easy to distribute: [pg8000](https://github.com/tlocke/pg8000)
+  - newer kid on the block: [asyncpg](https://github.com/MagicStack/asyncpg)
     - better performance
 
 ## Migration management tools
-- [Alembic](https://alembic.sqlalchemy.org/en/latest/), used with SQLAlchemy (but doesn't need to?)
+- [Alembic](https://alembic.sqlalchemy.org/en/latest/), used with SQLAlchemy
 - [sqitch](https://sqitch.org)
 - [flyway](https://flywaydb.org/)
   - rollback migrations is a paid feature
 - [liquibase](https://www.liquibase.org/)
   - using env vars is a paid feature
+- raw SQL w/ lightweight tool, eg. [goose](https://github.com/pressly/goose)
 
-### psycopg2
+### Using psycopg2
 
 ```sh
 pip install psycopg2

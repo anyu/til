@@ -18,38 +18,40 @@ Postgres example:
 ```sql
 -- +goose Up
 -- +goose StatementBegin
-CREATE TABLE author (
-    id UUID DEFAULT gen_random_uuid (),
+CREATE TABLE IF NOT EXISTS authors (
+    id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
     name TEXT NOT NULL,
     active BOOLEAN NOT NULL DEFAULT FALSE,
-    PRIMARY KEY(id)
 );
 
-CREATE TABLE book (
-    id UUID DEFAULT gen_random_uuid (),
+CREATE TABLE IF NOT EXISTS books (
+    id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
     name TEXT NOT NULL,
     author_id UUID NOT NULL,
     published_at TIMESTAMP WITHOUT TIME ZONE DEFAULT NOW() NOT NULL,
-    PRIMARY KEY(id),
-    FOREIGN KEY (author_id) REFERENCES author(id)
+    FOREIGN KEY (author_id) REFERENCES authors(id)
 );
 
-CREATE TABLE author_book (
+CREATE TABLE authors_books (
     author_id UUID NOT NULL,
     book_id UUID NOT NULL,
     created_at TIMESTAMP WITHOUT TIME ZONE DEFAULT NOW() NOT NULL,
     PRIMARY KEY(author_id, book_id),
-    FOREIGN KEY (author_id) REFERENCES author(id)
-    FOREIGN KEY (book_id) REFERENCES book(id)
+    FOREIGN KEY (author_id) REFERENCES authors(id)
+    FOREIGN KEY (book_id) REFERENCES books(id)
 );
+
+CREATE INDEX books_author_id_fkey ON authors(id);
 
 -- +goose StatementEnd
 
 -- +goose Down
 -- +goose StatementBegin
-DROP TABLE author_book;
-DROP TABLE book;
-DROP TABLE author;
+-- reversed order
+DROP INDEX IF EXISTS books_author_id_fkey;
+DROP TABLE IF EXISTS authors_books;
+DROP TABLE IF EXISTS books;
+DROP TABLE IF EXISTS authors;
 -- +goose StatementEnd
 ```
 

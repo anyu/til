@@ -1,7 +1,7 @@
 # Postgres Commands
 
 ## Setup
-```
+```sh
 brew install postgres
 brew services start postgresql
 # enter pysql interactive
@@ -12,7 +12,7 @@ psql postgres
 
 The `postgres` role may not have been created, verify via:
 
-```
+```sh
 $psql postgres
 
 postgres-# \du
@@ -24,24 +24,24 @@ postgres-# \du
 
 If it's not there, use the `createuser` utility that comes with Postgres:
 
-```
+```sh
 createuser postgres -s
 ```
 
 Log in w/ a particular role
-```
+```sh
 psql -U postgres
 ```
 
 If already in postgres, switch role
 ```
-set role ROLE
+set role $ROLE
 ```
 
 ### Create DB
 
-```
-CREATE database DB_NAME;
+```sql
+CREATE database $DB_NAME;
 ```
 
 ### List DBs
@@ -51,13 +51,13 @@ CREATE database DB_NAME;
 
 ### Connect to DB
 ```
-\c DB_NAME
+\c $DB_NAME
 ```
 
 ### Create table
 
-```
-CREATE TABLE TABLE_NAME (
+```sql
+CREATE TABLE IF NOT EXISTS $TABLE_NAME (
   id SERIAL NOT NULL PRIMARY KEY,
   name TEXT,
   created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
@@ -72,13 +72,21 @@ CREATE TABLE TABLE_NAME (
 ### Describe table
 
 ```
-\d TABLE_NAME
+\d $TABLE_NAME;
 ```
 
 ### Drop table
 
+```sql
+DROP TABLE IF EXISTS $TABLE_NAME;
 ```
-DROP TABLE TABLE_NAME
+
+### View indexes
+
+`\d $TABLE_NAME` should show indexes, but if not:
+
+```sql
+SELECT * FROM pg_indexes WHERE tablename NOT LIKE 'pg%';
 ```
 
 ## Troubleshooting
@@ -91,8 +99,8 @@ DROP TABLE TABLE_NAME
 
 ## Resources
 
-- https://dbfiddle.uk/?rdbms=postgres_14
+- [DB fiddle - postgres](https://dbfiddle.uk/?rdbms=postgres_14)
   - generate UUID type value
     ```sql
-    select gen_random_uuid ()
+    select gen_random_uuid()
     ```

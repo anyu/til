@@ -26,9 +26,9 @@ def seed_tables(db_cfg):
     meta = MetaData()
 
     # Use reflection to get table schemas
-    meta.reflect(engine, only=["book, shelf"])
-    book_table = Table("book", meta, autoload=True, autoload_with=engine)
-    shelf_table = Table("shelf", meta, autoload=True, autoload_with=engine)
+    meta.reflect(engine, only=["books, shelves"])
+    book_table = Table("books", meta, autoload=True, autoload_with=engine)
+    shelf_table = Table("shelves", meta, autoload=True, autoload_with=engine)
 
     # Generate random integers for test data
     random_num = randint(0, 1000000)
