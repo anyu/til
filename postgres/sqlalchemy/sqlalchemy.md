@@ -52,20 +52,63 @@ app/
 
 ```py
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import Column, Integer, String, VARCHAR
+from sqlalchemy import Boolean, Column, DateTime, ForeignKey, Text, text, VARCHAR
 from sqlalchemy.dialects.postgresql import UUID
+from sqlalchemy.orm import relationship
 
 Base = declarative_base()
 
+class Author(Base):
+    __tablename__ = 'author'
+    id = Column(UUID(as_uuid=True), server_default=text("gen_random_uuid()"), primary_key=True)
+    created_at = Column(DateTime, server_default=utcnow(), nullable=False)
+    updated_at = Column(
+        DateTime, server_default=utcnow(), server_onupdate=utcnow(), nullable=False
+    )
+    author = Column(Text)
+
 class Book(Base):
     __tablename__ = 'book'
-    id = Column(UUID(as_uuid=True), primary_key=True)
+    id = Column(UUID(as_uuid=True), server_default=text("gen_random_uuid()"), primary_key=True)
     title = Column(VARCHAR(255), nullable=False)
-    author = Column(String)
-    pages = Column(Integer)
-    # timestamps get involved; this is a basic example
-    published=datetime(2016, 11, 18)
+    author_id = Column(UUID(as_uuid=True), ForeignKey("author.id"), nullable=False)
+    active = Column(Boolean, server_default=text("false"), nullable=False)
+
+    book = relationship("Book")    
+
+# Intersection/join model - there's a simpler way if you don't need to add extra fields
+class BookAuthor(Base):
+    __tablename__ = "book_author"
+
+    some_extra_field = Column(Text)
+    book_id = Column(
+        UUID(as_uuid=True), ForeignKey("book.id"), primary_key=True, nullable=False
+    )
+    author_id = Column(
+        UUID(as_uuid=True), ForeignKey("author.id"), primary_key=True, nullable=False
+    )    
+
+    book = relationship("Book")
+    author = relationship("Author")
 ```
+
+`utcnow()` func needs to be added manually - see https://docs.sqlalchemy.org/en/14/core/compiler.html#utc-timestamp-function
+
+```py
+from sqlalchemy.ext.compiler import compiles
+from sqlalchemy.sql import expression
+from sqlalchemy.types import DateTime
+
+class utcnow(expression.FunctionElement):
+    type = DateTime()
+
+@compiles(utcnow, "postgresql")
+def pg_utcnow(element, compiler, **kw):
+    return "TIMEZONE('utc', CURRENT_TIMESTAMP)"
+```
+
+## Gotchas
+- sqlalchemy does not pick up `default` attributes, so need to use `server_default`
 
 ## Connecting
 
