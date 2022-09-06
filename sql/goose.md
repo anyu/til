@@ -79,3 +79,10 @@ Get status of migrations:
 ```
 goose -dir $PATH_TO_MIGRATIONS postgres "postgresql://$USER:$PASSWORD@localhost:5432/$DB_NAME" status
 ```
+
+goose adds the following tables to keep track of migrations
+
+```
+goose_db_version
+goose_db_version_id_seq
+```
