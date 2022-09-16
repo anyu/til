@@ -74,7 +74,7 @@ class Book(Base):
     author_id = Column(UUID(as_uuid=True), ForeignKey("authors.id"), nullable=False)
     active = Column(Boolean, server_default=text("false"), nullable=False)
 
-    book = relationship("Book")    
+    book = relationship("Book")
 
 # Intersection/join model - there's a simpler way if you don't need to add extra fields
 class BookAuthor(Base):
@@ -86,7 +86,7 @@ class BookAuthor(Base):
     )
     author_id = Column(
         UUID(as_uuid=True), ForeignKey("authors.id"), primary_key=True, nullable=False
-    )    
+    )
 
     book = relationship("Book")
     author = relationship("Author")
