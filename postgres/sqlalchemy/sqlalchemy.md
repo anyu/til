@@ -61,9 +61,9 @@ Base = declarative_base()
 class Author(Base):
     __tablename__ = 'authors'
     id = Column(UUID(as_uuid=True), server_default=text("gen_random_uuid()"), primary_key=True)
-    created_at = Column(DateTime, server_default=utcnow(), nullable=False)
+    created_at = Column(DateTime(timezone=True), server_default=utcnow(), nullable=False)
     updated_at = Column(
-        DateTime, server_default=utcnow(), server_onupdate=utcnow(), nullable=False
+        DateTime(timezone=True), server_default=utcnow(), server_onupdate=utcnow(), nullable=False
     )
     author = Column(Text)
 
@@ -71,10 +71,16 @@ class Book(Base):
     __tablename__ = 'books'
     id = Column(UUID(as_uuid=True), server_default=text("gen_random_uuid()"), primary_key=True)
     title = Column(VARCHAR(255), nullable=False)
-    author_id = Column(UUID(as_uuid=True), ForeignKey("authors.id"), nullable=False)
+    # `ondelete="CACASDE": book record is also deleted if author record deleted
+    author_id = Column(UUID(as_uuid=True), ForeignKey("authors.id", ondelete="CASCADE"), nullable=False)
     active = Column(Boolean, server_default=text("false"), nullable=False)
 
+    # Relationships
     book = relationship("Book")
+    # Indexes
+    books_author_id_fkey = Index("books_authory_id_fkey", author_id)
+    # Constraints
+    unique_constraint = UniqueConstraint(author_id, title)
 
 # Intersection/join model - there's a simpler way if you don't need to add extra fields
 class BookAuthor(Base):
