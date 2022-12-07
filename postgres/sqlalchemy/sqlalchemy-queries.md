@@ -154,3 +154,15 @@ query = (
   )
   .limit(25)
   ```
+
+### Coalesce
+
+Can be useful in some situations when you have nulls/0s and want to temporarily convert them to some other value.
+
+```
+from sqlalchemy import func
+from sqlalchemy.sql.functions import coalesce
+
+# Coalesce null `count` values to 0 (I think?)
+func.row(coalesce(MyTableModel.count, 0) 
+```            
