@@ -72,3 +72,5 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 ```
+
+NOTE: If using something like sqlalchemy in application code, see sqlalchemy note on using `server_onupdate` to delegate to the DB.

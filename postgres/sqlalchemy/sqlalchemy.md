@@ -63,6 +63,10 @@ class Author(Base):
     id = Column(UUID(as_uuid=True), server_default=text("gen_random_uuid()"), primary_key=True)
     created_at = Column(DateTime(timezone=True), server_default=utcnow(), nullable=False)
     updated_at = Column(
+        # The `server_` prefix delegates to the underlying DB, which is generally probably better practice to
+        # have 1 source of truth. But to just have sqlalchemy set these, just use `default`, `onupdate`.
+        # Note also that Postgres does not have a built-in `ON UPDATE`, so if using `server_onupdate`, would need
+        # to use triggers. See postgres notes.
         DateTime(timezone=True), server_default=utcnow(), server_onupdate=utcnow(), nullable=False
     )
     author = Column(Text)
