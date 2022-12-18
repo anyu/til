@@ -7,6 +7,7 @@ TODO
 - table naming conventions (singular vs plural table names, columns)
 - data types
   - primary key types (UUID vs sequential)
+    - https://brandur.org/nanoglyphs/026-ids
   - timestamps (UTC, timezones)
   - enums
 - choosing indexes, index naming conventions

@@ -1,9 +1,10 @@
-# Async 
+# Async
 
 SQLalchemy async extension: https://docs.sqlalchemy.org/en/14/orm/extensions/asyncio.html
 
 ### Key changes
 
+1. Dependencies: `asyncpg`, `greenlet` (though may not necessarily be needed?)
 1. Use async methods
 1. Update connection string prefix to: `postgresql+asyncpg://`
 1. Use async version of connection/engine functions
@@ -41,3 +42,6 @@ async def async_main():
 
 asyncio.run(async_main())
 ```
+
+### Resources
+- https://matt.sh/sqlalchemy-the-async-ening
