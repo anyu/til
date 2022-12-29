@@ -10,9 +10,9 @@
 
 ```python
 conditions = [
-    MyTable_3.book_id == 'some-book-id'
     MyTable_1.note_id == 'some-note-id',
-    MyTable_1.tag_id == 'some-tag-d'
+    MyTable_1.tag_id == 'some-tag-d',
+    MyTable_3.book_id == 'some-book-id'
 ]
 
 join_stmt = join(
