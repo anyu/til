@@ -6,6 +6,29 @@
 - `CursurResult.first()`: Returns 1 row or None.
   - `Result.scalar()`: Returns 1 singular scalar value (eg. the first column of the first row)
 
+### Chaining multiple joins
+
+```python
+conditions = [
+    MyTable_3.book_id == 'some-book-id'
+    MyTable_1.note_id == 'some-note-id',
+    MyTable_1.tag_id == 'some-tag-d'
+]
+
+join_stmt = join(
+    MyTable_1,
+    MyTable_2,
+    MyTable_1.note_id == MyTable_2.id,
+).join(MyTable_3, MyTable_3.id == MyTable_2.project_id)
+
+query = (
+    select(MyTable_1)
+    .select_from(join_stmt)
+    .where(and_(*conditions))
+)
+return await session.execute(query)
+```
+
 ### Create record and return it
 ```python
 my_obj = MyTableModel(
