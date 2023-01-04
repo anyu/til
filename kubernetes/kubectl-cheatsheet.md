@@ -146,6 +146,18 @@ FIELDS:
      The header field value
 ```
 
+### List K8S api endpoints
+
+```sh
+✗  kubectl api-resources
+NAME                              SHORTNAMES   APIVERSION                             NAMESPACED   KIND
+bindings                                       v1                                     true         Binding
+componentstatuses                 cs           v1                                     false        ComponentStatus
+configmaps                        cm           v1                                     true         ConfigMap
+endpoints                         ep           v1                                     true         Endpoints
+...
+```
+
 ### Misc Debugging
 
 SSH into pod
