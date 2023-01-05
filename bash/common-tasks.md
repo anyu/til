@@ -16,3 +16,8 @@ for i in `seq 1 10`; do echo $i; done
 
 seq 1 5 | xargs -n1 -P 5 curl http://localhost:8000
 ```
+
+## Useful resources
+
+- https://explainshell.com
+- https://thevaluable.dev/guide-terminal-shell-console
