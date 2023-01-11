@@ -1,5 +1,18 @@
 # SQL Queries
 
+### Select rows with ID in list
+
+```
+SELECT * FROM $table_name
+WHERE id in ('e8fa8f92', '4fe2a6a6');
+```
+
+### Delete rows with ID in list
+
+```
+DELETE FROM $table_name
+WHERE id in ('e8fa8f92', '4fe2a6a6');
+```
 
 ### Upserting a value when there's a conflict due to a constraint
 ```sql
@@ -13,6 +26,15 @@ or do nothing
 INSERT INTO $table_name (column1, column2, column3)
 VALUES ('some-valu1',  'some-value2', 'some-value3') 
 ON CONFLICT ON CONSTRAINT DO NOTHING
+```
+
+### Get duplicate entries
+
+- the columns selected by must also be in the group by
+
+```sql
+SELECT column1 from $table_name group by column1, column2
+HAVING COUNT(*) > 1;
 ```
 
 ### Cascade deleting records in other tables
