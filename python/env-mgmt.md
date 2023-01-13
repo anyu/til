@@ -38,3 +38,12 @@
     $ python -V
     Python 3.10.0
     ```
+
+## Troubleshooting
+
+If get `FileExistsError`, remove existing `venv` dir before running `virtualenv` step:
+
+```sh
+ls | grep venv
+rm -rf venv
+```
