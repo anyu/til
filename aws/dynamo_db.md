@@ -142,7 +142,38 @@ aws dynamodb describe-table --table-name UsersTable
 
 ```sh
 aws dynamodb get-item \
-  --tabe=le-name UsersTable \
+  --table-name UsersTable \
   --projection-expression "Age, Username" \
   --key '{"Username": {"S": "alice"}}'
 ```
+
+### Describe table
+
+```sh
+aws dynamodb describe-table --table-name $TABLE_NAME
+```
+
+# GSIs
+
+[Attribute projections](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/GSI.html#GSI.Projections) = set of attributes copied from a table to a secondary index
+- the partition and sort keys are always projected onto the index
+- can figure what other attributes are projected: `KEYS_ONLY`, `INCLUDE`, `ALL`
+
+## Query a GSI
+- [Using Global Secondary Indexes in DynamoDB](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/GSI.html)
+- [Query a GSI](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/GCICli.html#GCICli.QueryAnIndex)
+
+Given this GSI:
+
+- GSI name: `my_gsi_idx`
+- GSI hash key: `gsi_hash_idxkey`
+- GSI sort key: `gsi_sort_idxkey`
+
+```sh
+aws dynamodb query \
+  --table-name $TABLE_NAME \
+  --index-name my_gsi_idx \
+  --key-condition-expression "gsi1_hash_idxkey = :keyword" \
+  --expression-attribute-values '{":keyword": {"S": "some-value"} }'
+```
+with `:keyword` being just the variable used between the key condition expresssion and expression attribute values
