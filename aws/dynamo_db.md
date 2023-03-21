@@ -153,6 +153,20 @@ aws dynamodb get-item \
 aws dynamodb describe-table --table-name $TABLE_NAME
 ```
 
+# Querying
+
+```sh
+❯ aws dynamodb query \
+--table-name $TABLE_NAME \
+--index-name my_idx_name \
+--key-condition-expression "my_idx_name = :keyword" \
+--expression-attribute-values '{":keyword":{"S":"SOME_VAL"}}' \
+--exclusive-start-key '{"my_idx_name":{"S":"SOME_VAL"},"principal":{"S":"SOME_PRINCIPAL"},"sort_key":{"S":"SOME_SORT_KEY"},"created_sort_idxkey":{"N":"1678906760.5004647"}}' \
+--no-scan-index-forward
+```
+
+NOTE: If a timestamp is being used, watch out for truncated digits/rounding. May affect which records get pulled.
+
 # GSIs
 
 [Attribute projections](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/GSI.html#GSI.Projections) = set of attributes copied from a table to a secondary index
