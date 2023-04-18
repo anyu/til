@@ -205,7 +205,7 @@ In cases where you can't skip re-rendering, "prioritize rendering". Separate blo
 ## Component Management
 
 ### React Component Libraries
-- [Material UI (MUI)](https://mui.com/material-ui/getting-started/overview/): implements Google's Material Design; 
+- [Material UI (MUI)](https://mui.com/material-ui/getting-started/overview/): implements Google's Material Design 
   - Pros: battle-tested, very popularly used
   - Cons: very opinionated, not great for lots of customization
 - [Semantic UI React](https://react.semantic-ui.com/): official React integration for Semantic UI
@@ -245,3 +245,10 @@ In cases where you can't skip re-rendering, "prioritize rendering". Separate blo
 - Cache your data with react-query or other lib
 - Only put string or number or boolean in useEffect dependencies
 - Remove logging in prod
+
+## Measuring Performance Tools
+
+- Chrome dev tools > [Performance](https://developer.chrome.com/docs/devtools/performance/reference/)
+- React Dev Tools > Profiler
+- [Profiler](https://react.dev/reference/react/Profiler#measuring-rendering-performance-programmatically) component
+- [Lighthouse](https://developer.chrome.com/en/docs/lighthouse/performance/performance-scoring/)
