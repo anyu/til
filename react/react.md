@@ -80,6 +80,8 @@ React 16.8 introduced Hooks, enabling using state without a separate class.
 - [useEffect](https://react.dev/reference/react/useEffect): Lets a component connect to and sync with external systems, eg. network calls, DOM, animations, non-React code.
 - Another 'escape hatch' from the React paradigm; don't use it to orchestrate data flow.
 - If not interacting with an external system, may not need this
+- **Note**: React 18 introduced a breaking change. In Strict Mode, all components mount, unmount, then mount again. A `useEffect` with zero deps will be executed twice. In dev, useEffect will fire twice.
+  - Workarounds [exist](https://dev.to/ag-grid/react-18-avoiding-use-effect-getting-called-twice-4i9e), but keep in mind, this may break when React releases the [reusable sate](https://react.dev/blog/2022/03/29/react-v18#new-strict-mode-behaviors) feature
 
 ### Performance Hooks
 
@@ -132,10 +134,114 @@ In cases where you can't skip re-rendering, "prioritize rendering". Separate blo
 
 ## CSS Management
 
+### CSS Frameworks
+- Tailwind
+- PureCSS
+- Materialize CSS
+
+### CSS-in-JS
+- [Styled Components](https://github.com/styled-components/styled-components)
+  - Pros: arguably semantically nicer to read
+  - Cons: absence of CSS files means you can't cache separate CSS, other libs may not support styled components
+    ```js
+    import React, { Component } from 'react';
+    import styles from 'styled-components';
+
+    const Title = styles.h1`
+      padding: 20px;
+      background-color: #222;
+      text-align: center;
+      color: white;
+      font-size: 1.5em;
+    `;
+
+    class App extends Component {
+      render() {
+        return (
+          <Title>React application title</Title>
+        );
+      }
+    }
+    ```
+- [CSS Modules](https://github.com/css-modules/css-modules)
+  - Pros: Allows integrating with tools like SCSS, less, stylelint, etc; arguably cleaner since it separates styling from code
+  - StyleS names using a hash-based on the filename, path, style name
+    ```js
+    import React, { Component } from 'react';
+    import styles from './App.module.css';
+
+    class App extends Component {
+    render() {
+      return (
+        <div className={styles.title}>
+          React application title
+        </div>
+      );
+    }
+    }
+    ```
+- [Styled JSX](https://github.com/vercel/styled-jsx)
+  ```js
+  export default () => (
+    <div>
+      <p>only this paragraph will get the style</p>
+
+      {/* you can include <Component />'s here that include other <p>s that don't get unexpected styles! */}
+      <style jsx>{`
+        p {
+          color: red;
+        }
+      `}</style>
+    </div>
+  )
+  ```
+- [Emotion](https://emotion.sh/docs/introduction)
+
+### Pre/Post-Processors
+- Sass, PostCSS, Less, Stylus
+
 --- 
 
 ## Component Management
 
---- 
+### React Component Libraries
+- [Material UI (MUI)](https://mui.com/material-ui/getting-started/overview/): implements Google's Material Design; 
+  - Pros: battle-tested, very popularly used
+  - Cons: very opinionated, not great for lots of customization
+- [Semantic UI React](https://react.semantic-ui.com/): official React integration for Semantic UI
+  - Cons: Doesn't support internalization, docs not as good
+- [Ant Design](https://ant.design/): marketed as lib for enterprise products; good for dashboards, admin tools
+  - created by Chinese company, so community support may be in Chinese instead
 
-## Performance
+## Optimizing React Performance
+
+### Code-split & lazy load components
+-  Split a large bundle file into multiple chunks using dynamic import() followed by lazy loading these chunks on-demand using the React.lazy.
+- [React.lazy](https://react.dev/reference/react/lazy): Defer loading component’s code until it is rendered for the first time
+  ```js
+  const Home = React.lazy(() => import("./components/Home"));
+  const About = React.lazy(() => import("./components/About"));
+  ```
+- [Suspense](https://react.dev/reference/react/Suspense): Display a fallback until a component's children have finished loading.Use in conjunction with lazy to specify what should be displayed while it's loading. You can do this by wrapping the lazy component or any of its parents into a <Suspense> boundary:
+  ```js
+  <Suspense fallback={<Loading />}>
+    <h2>Preview</h2>
+    <MarkdownPreview />
+  </Suspense>
+  ```
+  `MarkdownPreview` won’t be loaded until you attempt to render it; shows Loading component in the meantime.
+
+### Memoize components to prevent unnecessary re-renders
+- Cache a component-rendered operation, save the result in memory, and returns the cached result for the same input.
+
+### Lazy load images, optimize images 
+- Wait until image is about to appear in the viewport before rendering in DOM. Prevents the creation of unnecessary DOM nodes.
+
+### Other
+- Keep component state local where necessary
+- Only fetch data you need 
+- Use pagination
+- Avoid massive libs, keep bundle small 
+- Cache your data with react-query or other lib
+- Only put string or number or boolean in useEffect dependencies
+- Remove logging in prod
