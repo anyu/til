@@ -2,6 +2,11 @@
 
 #### Less frequently used Git commands I tend to forget
 
+Checkout/cherry-pick file from other branch
+```shell
+git checkout $BRANCH_NAME -- $PATH_TO_FILE
+```
+
 Stash only staged changes (as of v2.35)
 ```shell
 git stash --staged
