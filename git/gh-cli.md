@@ -11,6 +11,13 @@ $ gh auth login
 ### Make Github API requests
 - [GH API docs](https://docs.github.com/en/rest)
 
+
+#### Create remote repo with local directory
+
+```shell
+gh repo create
+```
+
 #### Get repo information
 ```shell
 gh api /repos/ORG/REPO
