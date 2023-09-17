@@ -42,14 +42,14 @@ the one in OS settings, which is likely the ISP DNS or a configured 3rd party DN
     TODO: Test changing DNS in settings and see if this file changes.
 
 4. The ISP DNS resolver first checks its own cache. (TODO: Where is this located?)
-5. The ISP DNS resolver starts the **DNS resolution process**. It queries one of 13[^1] main **root name servers** located wordwide, which provide information about the TLD name servers.
-Most DNS servers are configured with a **root file** (or **root hint** file, `root.hits`) with the addresses of the root name servers.
+5. The ISP DNS resolver starts the **DNS resolution process**. It queries one of 13 main **root name servers** located wordwide, which provide information about the TLD name servers.
+Most DNS servers are configured with a **root file** (or **root hint** file, `root.hints`) with the addresses of the root name servers.
 
     You can see the list via `dig . ns`.
 
     The 13 root name servers are named `A` to `M`, all have an IPv4 address, and most have an IPv6 address.
     ICANN manages these root servers, which are operated by different institutions.
-    An info pages exists for each at `http://{letter}.root-servers.org` (eg. [a.root-server](https://a.root-servers.org/)
+    An info pages exists for each at `http://{letter}.root-servers.org` (eg. [a.root-server](https://a.root-servers.org/))
 
     Each root name server contains an identical copy of the **root zone file** (not to be confused with the `root.hints` file), which is updated very occasionally through an ICANN process.
 
