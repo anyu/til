@@ -21,6 +21,9 @@
 3. Overwrite virtual env named `venv` with new path
     ```sh
     virtualenv -p /Users/anyu/.pyenv/shims/python3.10 venv
+
+    # or if it's in /versions:
+    virtualenv -p /Users/anyu/.pyenv/versions/3.8.18/bin/python venv
     ```
 
 4. Check that `venv` now has the new version:
@@ -47,3 +50,24 @@ If get `FileExistsError`, remove existing `venv` dir before running `virtualenv`
 ls | grep venv
 rm -rf venv
 ```
+
+### venv
+
+Or just use venv, which comes with pip installed
+```
+python3 -m venv venv
+```
+
+```
+source venv/bin/activate
+```
+
+### Requirements file
+
+Generate from existing deps via `pip freeze > requirements.txt`
+
+Install reqs from reqs file
+```
+pip install -r requirements.txt
+```
+
