@@ -1,5 +1,11 @@
 # RPI Setup
 
+## Requirements
+
+- power supply
+- ethernet
+- mac SD card adapter
+
 ## Flash rpi OS to SD card (or use Etcher)
 1. Download Raspbian or other OS
 1. Tar unzip it: `tar -xvf raspbian-os.zip`
@@ -14,9 +20,9 @@ If you create a `wpa_supplicant.conf` file in `/boot`, it will be copied to the 
 
 1. Touch empty ssh file in the `/boot` directory of the SD card to enable SSH
 2. Edit `wpa_supplicant` file with Wifi info (or create if doesn’t exist):
+  `sudo vi /etc/wpa_supplicant/wpa_supplicant.conf`
+  
   ```sh
-  sudo vi /etc/wpa_supplicant/wpa_supplicant.conf
-  --------
   ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
   update_config=1
   country=US
@@ -24,7 +30,8 @@ If you create a `wpa_supplicant.conf` file in `/boot`, it will be copied to the 
   network={
     ssid="YOURSSID"
     psk="YOURPASSWORD"
-    scan_ssid=1
+    key_mgmt=WPA-PSK
+    <!-- scan_ssid=1 -->
   }
   ```
 2. Safely eject SD card: `sudo diskutil eject /dev/rdisk2`
@@ -51,6 +58,7 @@ country=US
 network={
 	ssid="XX"
 	psk="XXX"
+  key_mgmt=WPA-PSK
 }
 ```
 
