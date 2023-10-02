@@ -36,7 +36,6 @@ If you create a `wpa_supplicant.conf` file in `/boot`, it will be copied to the 
   ```
 2. Safely eject SD card: `sudo diskutil eject /dev/rdisk2`
 
-
 ## SSHing into rpi
 1. Insert SD card
 1. Connect ethernet to laptop (that’s connected to WiFi)
@@ -48,17 +47,6 @@ If you create a `wpa_supplicant.conf` file in `/boot`, it will be copied to the 
 1. SSH with -X and lxsession for GUI: `ѕѕh -X pi@192.168.2.2 lxѕеѕѕіоn`
 1. Test for internet access: `ping www.google.com`
 
-## Configure rpi
-`sudo raspi-config`
+## Connecting via Wifi
 
-```sh
-ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
-update_config=1
-country=US
-network={
-	ssid="XX"
-	psk="XXX"
-  key_mgmt=WPA-PSK
-}
-```
-
+1. `sudo raspi-config` > `System Options` > `Wireless LAN` > enter wifi info
