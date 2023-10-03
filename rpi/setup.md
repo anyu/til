@@ -6,8 +6,15 @@
 - ethernet
 - mac SD card adapter
 
-## Flash rpi OS to SD card (or use Etcher)
-1. Download Raspbian or other OS
+## Flash rpi OS to SD card
+
+### Use [Etcher](https://etcher.balena.io/) (easiest)
+
+1. Download Raspbian or other OS from RPI official site
+1. Follow etcher UI
+
+### Manual
+1. Download Raspbian or other OS from RPI official site
 1. Tar unzip it: `tar -xvf raspbian-os.zip`
 1. List mounted devices / space: `df -h`
 1. Unmount sd card: `sudo diskutil unmount /dev/disk2s1`
@@ -16,7 +23,6 @@
 1. Wait until copy is done. Can use CTRL+T to check on status.
 
 ## Enable SSH to rpi
-If you create a `wpa_supplicant.conf` file in `/boot`, it will be copied to the main partition's `/etc/wpa_supplicant` location at boot time,replacing whatever is there. It will then be deleted from `/boot`, so you won't see it there if you go looking.
 
 1. Touch empty ssh file in the `/boot` directory of the SD card to enable SSH
 2. Edit `wpa_supplicant` file with Wifi info (or create if doesn’t exist):
@@ -34,7 +40,10 @@ If you create a `wpa_supplicant.conf` file in `/boot`, it will be copied to the 
     <!-- scan_ssid=1 -->
   }
   ```
-2. Safely eject SD card: `sudo diskutil eject /dev/rdisk2`
+  Note: If you create a `wpa_supplicant.conf` file in `/boot`, it will be copied to the main partition's `/etc/wpa_supplicant` location at boot time,replacing whatever is there. It will then be deleted from `/boot`, so you won't see it there if you go looking.
+
+3. List connected devices: `diskutil list`
+4. Safely eject SD card: `sudo diskutil eject /dev/rdisk2`
 
 ## SSHing into rpi
 1. Insert SD card
