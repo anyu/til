@@ -7,7 +7,7 @@ Headless instructions
 3. Turn on rpi
 4. SSH into RPI, run `sudo raspi-config` > `Interface Options` > `Camera` > `Enable`.
 5. Take pic
-  - newer rpi images (bullseye+): `libcamera-vid -t 0`
+  - newer rpi images (bullseye+): `libcamera-still -o test.jpg`
   - older rpi images: `raspistill -o test.jpg`
 6. Transfer pic back to local: `scp pi@retropie.local:~/test.jpg .`
 
