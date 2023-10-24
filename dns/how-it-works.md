@@ -5,7 +5,7 @@
 You enter `google.com`:
 
 1. Browser -> browser's DNS cache -> **DNS resolver** (aka. recursive nameserver) (ISP or 3rd party)
-1. ISP DNS resolver -> own DNS cache -> DNS root name server, which returns the `.com` TDL nameserver address
+1. ISP DNS resolver -> own DNS cache -> DNS root name server, which returns the `.com` TLD nameserver address
 1. ISP DNS resolver -> `.com` TLD name server, which returns the **authoritative** nameserver address that has a record for `google.com`.
 1. ISP DNS resolver ->  authoritative nameserver, which returns the IP for the domain.
 1. The browser finally makes an HTTP request to that IP address.
