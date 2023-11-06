@@ -1,3 +1,5 @@
+# DNS Lookup
+
 # How DNS Works
 
 ## TLDR
@@ -42,7 +44,7 @@ the one in OS settings, which is likely the ISP DNS or a configured 3rd party DN
     TODO: Test changing DNS in settings and see if this file changes.
 
 4. The ISP DNS resolver first checks its own cache. (TODO: Where is this located?)
-5. The ISP DNS resolver starts the **DNS resolution process**. It queries one of 13 main **root name servers** located wordwide, which provide information about the TLD name servers.
+5. The ISP DNS resolver starts the **DNS resolution process**. It queries one of [13 main](https://www.iana.org/domains/root/servers) **root name servers** located wordwide, which provide information about the TLD name servers.
 Most DNS servers are configured with a **root file** (or **root hint** file, `root.hints`) with the addresses of the root name servers.
 
     You can see the list via `dig . ns`.
@@ -89,21 +91,12 @@ The `google.com` part = the fully qualified domain name (FQDN)
 #### A record = authoritative record
 - record that maps a hostname to an IP address
 
-## Running Questions
-
-- What happens when you have a domain with Namecheap, but want to have the domain point to your app hosted elsewhere? (eg. Vercel)
-- Why are A records recommended over nameservers sometimes? eg. Vercel
-- How do I use tools like dig, nmap, etc?
-- When I try to access WiFi at a coffee shop, how do they make those little pop-ups come up where you have to take an action before being able to access the WiFi?
-What's really happening under the hood?
-- What is `broadcasthost`, `::1` entry in hosts file
-
 ### Misc interesting facts
 
 DNS lookups to the root name servers are relatively infrequent. 
-2003 - only 2% of root name server queries were legit.
 
+In 2003 only 2% of root name server queries were legit.
 
-- The IANA official root servers list: https://www.iana.org/domains/root/servers
-
-
+## Authoritative server vs. Recursive resolver
+- Authoritative name servers store DNS record information – usually a DNS hosting provider or domain registrar. 
+- Recursive name servers are the “middlemen” between authoritative servers and end-users because they have to recurse up the DNS tree to reach the name servers authoritative for storing the domain's records
