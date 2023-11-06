@@ -44,3 +44,4 @@ It's used to create virtual Ethernet devices that behave like physical network i
 ### Resources
 - **TUN/TAP**:
   - https://www.gabriel.urdhr.fr/2021/05/08/tuntap/#tun-vs-tap
+  - https://backreference.org/2010/03/26/tuntap-interface-tutorial/index.html
