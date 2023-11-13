@@ -28,7 +28,7 @@ Normally, when apps run I/O ops to files, network, or a DB, they trigger system 
 
 `bytes.NewReader` creates a Reader from a byte slice (aka. a chunk of memory you already have in your program). Useful for passing a byte slice to another API that expects a Reader.
 
-`bufio.NewReader` is for wrapping existing Readers (whose Read method is relatively expensive, eg. a TCP connection or file) to coalesce a lot of easy to pogram small Read calls into a few larger ones.
+`bufio.NewReader` is for wrapping existing Readers (whose Read method is relatively expensive, eg. a TCP connection or file) to coalesce a lot of easy to program small Read calls into a few larger ones.
 
 This function takes a byte slice where the data will be read into as an argument.
 

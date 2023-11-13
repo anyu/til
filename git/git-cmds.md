@@ -44,3 +44,13 @@ git branch -d local-branch
 # delete even if branch contains unmerged/unpushed commits
 git branch -D local-branch
 ```
+
+Diff with only file names
+
+```shell
+git diff --name-only
+```
+
+```shell
+git diff --name-only head head~1
+```
