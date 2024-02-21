@@ -51,3 +51,7 @@ The default is that JS parsing/execution blocks rendering; parsing of any HTML (
 - **Move computation off main thread**: async JS is JS that doesn't block main thread. Async APIs are good for handling ops that are particularly bad if they block the main thread (eg fetching resources from network, accessing file system file, opening webcam). Async APIs can execute functions while keeping main thread running subsequent code, and return results from those funcs in the future.
     - **Use web workers**: Creates a separate thread to run JS that sends result back to main thread. Constraint being you can't do DOM scripting inside a web worker.
     - **Use WebGPU**: Browser API that can access underlying system's GPU to carry high performance computations.
+- **Remove dead code**: aka tree shaking. Don't include unused modules when bundling during build process to reduce size of code.
+    - Newer versions of bundlers (eg. Webpack 4) have tree-shaking configurations
+    - Older versions of bundlers may mark code as unused, but not necessarily remove it.
+    - Beware of side effects, can mark `sideEffects` in config to skip tree shaking a file
