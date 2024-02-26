@@ -95,30 +95,3 @@ Additional common folders:
     └── lib/ # integrations with external libs
   ```
 
-## Imports
-
-### Default imports and exports
-
-Every module can only have 1 default export
-
-`MyComponent.js`
-```
-export default SOME_CONST
-```
-
-`OtherComponent.js`
-```js
-import SOME_CONST from MyComponent
-```
-
-### Named imports and exports
-
-`MyComponent.js`
-```
-export { OTHER_CONST }
-```
-
-`OtherComponent.js`
-```js
-import { OTHER_CONST } from MyComponent
-```
