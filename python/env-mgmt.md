@@ -2,7 +2,7 @@
 
 [Pyenv](https://github.com/pyenv/pyenv) is useful for managing python versions.
 - `brew install pyenv`
-- update .zshrc
+- update .zshrc (see pyenv section; in general read the ReadMe if hit version issues)
 
 [Virtualenv](https://virtualenv.pypa.io/en/stable/) is useful for managing python virtual environments.
 
