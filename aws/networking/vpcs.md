@@ -62,7 +62,7 @@ Both connectivity types of NAT gateways map the source private IP  > private IP 
 - Enables private subnet resources to connect to other VPCs
 - You can route traffic from the NAT gateway through a transit gateway or virtual private gateway
 - You can't associate an elastic IP with a private NAT gateway
-- You can technically attach an internet gateway to a VPC with a private NAT gateway, but if you try to route traffic from the private NAT gateway to the internet gateway, the internet gaeway drops the traffic
+- You can technically attach an internet gateway to a VPC with a private NAT gateway, but if you try to route traffic from the private NAT gateway to the internet gateway, the internet gateway drops the traffic
 
 ## VPC Peering
 - VPC peering can route traffic between 2 private VPCs.
@@ -90,7 +90,7 @@ Route tables are a set of rules (aka routes) that determine where to direct traf
 
 ### Common Patterns
 - 1 route table for whole VPC:
-  - for simple environments with only public subnets all pointing to 1 VPC internet gaeway; no complex routing rules
+  - for simple environments with only public subnets all pointing to 1 VPC internet gateway; no complex routing rules
 - 1 route table per subnet:
   - each subnet has 1 route table assigned; 1:1 relationship between route tables and subnets within the VPC
 - 2-tier routing tables (1 for public subnets, 1 for private subnets)
