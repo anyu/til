@@ -29,11 +29,15 @@ alembic.ini
 
 ## Generating/applying migration scripts
 
-Alembic can autogenerate migration scripts based on our DB models.
+`alembic revision -m "some description of change"`
+
+This will create a file `$REVISION_ID_some_description_of_change.py`. Edit as needed.
+
+Alembic can also autogenerate migration scripts based on our DB models (need to tweak `env.py` so it's aware of models)
 
 **NOTE**: There are [limitations](https://alembic.sqlalchemy.org/en/latest/autogenerate.html#what-does-autogenerate-detect-and-what-does-it-not-detect) to what it can/can't detect, so manual adjustments may need to be made.
 
-To autogenerate a migration script: `alembic revision --autogenerate -m "<Description of change>"`
+To autogenerate a migration script: `alembic revision --autogenerate -m "some description of change"`
 
 To apply migrations not yet applied: `alembic upgrade head`
 
