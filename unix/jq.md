@@ -59,3 +59,45 @@ Output
 value1
 value2
 ```
+
+### Convert JSON to CSV
+
+Given input JSON, convert to CSV with specific field values extracted (`id`, `name`, `tags`):
+
+```json
+{
+  "message": "ok",
+  "data": {
+    "items": [
+      {
+        "id": 1,
+        "ref_id": 22,
+        "name": "some_name",
+        "tags": []
+      },
+      {
+        "id": 2,
+        "ref_id": 33,
+        "name": "some_name",
+        "tags": []
+      }
+    ],
+    "count": 2
+  }
+}
+```
+
+```sh
+jq -r '.data.items[] | [.id, .name, (.tags | join(";"))] | @csv' input.json > output.csv
+```
+
+Do the same but with column headers:
+```sh
+jq -r '
+  ["id", "name", "tags"],
+  (.data.items[] | [
+    .id, .name, (.tags | join(","))
+  ])
+  | @csv
+' input.json > output.csv
+```
