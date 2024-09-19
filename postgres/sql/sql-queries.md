@@ -96,3 +96,19 @@ $$ LANGUAGE plpgsql;
 ```
 
 NOTE: If using something like sqlalchemy in application code, see sqlalchemy note on using `server_onupdate` to delegate to the DB.
+
+
+## Misc
+
+Handy query to test against values instead of a table
+```sql
+SELECT
+  DISTINCT(REGEXP_EXTRACT(emails,'@(.+)',1)) as domains
+FROM 
+(
+  VALUES
+  ('test@gmail.com'),
+  ('test2@hotmail.com')
+)
+as emails(emails);
+```

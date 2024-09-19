@@ -54,11 +54,11 @@ rm -rf venv
 ### venv
 
 Or just use venv, which comes with pip installed
-```
+```sh
 python3 -m venv venv
 ```
 
-```
+```sh
 source venv/bin/activate
 ```
 
@@ -67,7 +67,13 @@ source venv/bin/activate
 Generate from existing deps via `pip freeze > requirements.txt`
 
 Install reqs from reqs file
-```
+```sh
 pip install -r requirements.txt
 ```
 
+### Dependency Trees
+
+[pipdeptree](https://pypi.org/project/pipdeptree/) can be handy for viewing pip package dependencies:
+```sh
+pip install pipdeptree
+```

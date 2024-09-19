@@ -27,6 +27,8 @@ $ kubectl describe pod POD_NAME -n NAMESPACE
 
 $ kubectl logs POD_NAME -n NAMESPACE -c CONTAINER
 
+# For no longer existing containers
+$ kubectl logs POD_NAME -n NAMESPACE -c CONTAINER --previou=false
 ```
 
 ### Events

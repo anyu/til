@@ -16,4 +16,6 @@ A fix is:
 apt-get update --allow-releaseinfo-change
 ```
 
+Or could be a misleading docker out of space issue -> `docker system prune`
+
 TODO: Add explanations, how apt-get works more fundamentally
