@@ -43,3 +43,11 @@ com.docke 10055 anyu   49u  IPv6 0xff714f4171cf93e1      0t0  TCP *:irdmi (LISTE
 ```
 
 (source: https://askubuntu.com/a/731237)
+
+## Fold
+
+```
+fold long_text.txt
+```
+
+Print contents broken up into lines <80 columns.
