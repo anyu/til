@@ -46,8 +46,26 @@ com.docke 10055 anyu   49u  IPv6 0xff714f4171cf93e1      0t0  TCP *:irdmi (LISTE
 
 ## Fold
 
-```
+```sh
 fold long_text.txt
 ```
 
 Print contents broken up into lines <80 columns.
+
+## Password protect & zip file
+
+```sh
+`zip -e my_file.zip my_file.txt`
+```
+
+## CSV
+
+Count number of rows with keyword
+```sh
+grep -i "keyword" my_file.csv| wc -l
+```
+
+Get specific row from file (eg. L22)
+```sh
+sed -n '22p' my_file.csv
+```
