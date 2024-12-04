@@ -14,7 +14,7 @@ curl -L "https://clients2.google.com/service/update2/crx?response=redirect&prodv
 eg.
 
 ```
-curl -L "https://clients2.google.com/service/update2/crx?response=redirect&prodversion=129.0.0.0&acceptformat=crx2,crx3&x=id%3Dfbeeakkgbicfdjofohpdfjhfpfiglmhh%26uc" -O
+curl -L "https://clients2.google.com/service/update2/crx?response=redirect&prodversion=129.0.0.0&acceptformat=crx2,crx3&x=id%3Depcnnfbjfcgphgdmggkamkmgojdagdnn%26uc" -O
 ```
 
 2. Zip the file: `mv crx crx.zip`
