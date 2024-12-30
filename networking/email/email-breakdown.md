@@ -66,7 +66,9 @@ Both are used by mail clients to receive emails from a mailbox on a mail server.
     - made moot by `starttls` (but some sources say this is less safe)
 - Port 2525: the alternate port, if 587 is bloc­ked.
 
-## MX Records
+## MX (Mail Exchange) Records
+
+DNS records specify the *receiving/incoming* mail servers for a domain. With one, a domain can't receive emails directly.
 
 Checking MX records for a domain
 
@@ -107,6 +109,7 @@ If recipient does not have MX record set up, emails will not be delivered.
 - Sender Policy Framework records list the servers authorized to send emails from a domain. More of a sender-side mechanism that the recipient should check.
 - It's specified by the sender's domain (not recipient's), but if a *recipient* domain does not have SPF records, it's not doing SPF checks and isn't verifying if the sender is authorized to send emails on behalf of the sender's domain. Won't detect email spoofing.
 - Does not check/align the `From` address
+- Check SPF record of a domain: `dig $DOMAIN.com txt | grep spf`
 
 ### DKIM records
 - DomainKeys Identified Mail records use cryptographic keys for auth (public/private)
@@ -118,7 +121,17 @@ If recipient does not have MX record set up, emails will not be delivered.
 ### DMARC records
 - Domain-based Message Authentication Reporting & Conformance records contain DMARC policies, which tell email servers what to do after checking SPF, DKIM records.
 - So relies on SPF and DKIM to work
+- The DMARC policy is determined by the domain owner of the sender ('From' field), via a DMARC record in DNS
+- The recipient's server checks the DMARC record for the sender's domain
 - Checks alignment of the `From` domain to domains auth'd by SPF, DKIM.
 - Can be configured with rules on whether to block/allow messages
 - If recipient domain doesn't have SPF records, DMARC checks would also fail
 - If recipient domain doesn't have  DMARC records, but does have SPF, there'll still be a pass/fail from the SPF check, and the server can decide what to do. DMARC can just be used for stricter/standardized enforcement.
+- Check DMARC record of a domain: `dig _dmarc.$DOMAIN.com txt`
+
+---
+
+## Resources
+
+- https://learndmarc.com
+- https://toolbox.googleapps.com/apps/messageheader
