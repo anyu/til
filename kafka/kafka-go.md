@@ -2,7 +2,7 @@
 
 ## Popular Kafka client libraries
 
-- [sarama](https://github.com/IBM/sarama): 
+- [sarama](https://github.com/IBM/sarama)
     - Oldest and most widely used (large community, good docs)
     - Flexible, feature-rich
     - Solid performance, but might not be the fastest in all scenarios
